@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="600px" height="600px"></canvas>
+	</body>
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		function Rect(x,y,w,h,color){
+			this.x=x;
+			this.y=y;
+			this.w=w;
+			this.h=h;
+			this.color=color;
+		}
+		
+		Rect.prototype.update = function(){
+			this.x++;
+		}
+		
+		Rect.prototype.render = function(){
+			ctx.fillStyle = this.color;
+			ctx.fillRect(this.x,this.y,this.w,this.h);
+		}
+		
+		let r1 = new Rect(0,0,50,50,"blue")
+		
+		setInterval(()=>{
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			r1.update();
+			r1.render();
+		},1000/60)
+	</script>
+</html>

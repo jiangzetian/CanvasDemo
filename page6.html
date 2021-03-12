@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="600px" height="600px" style="border: 1px solid #ccc;"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		//绘制圆弧
+		function createArc(){
+			ctx.strokeStyle = '#000';
+			ctx.fillStyle = '#0f0';
+			ctx.beginPath()
+			ctx.arc(200,200,100,0,1*Math.PI,false);
+			ctx.stroke();
+			ctx.fill();
+		}
+		
+		createArc()
+	</script>
+</html>

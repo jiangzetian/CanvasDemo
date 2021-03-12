@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="600px" height="600px"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		//填充矩形
+		function createFillRect(){
+			//填充的默认颜色
+			ctx.fillStyle = '#0f0'
+			//填充矩形
+			ctx.fillRect(0,0,50,50)
+		}
+		
+		//边框矩形
+		function createStrokeRect(){
+			//填充的默认颜色
+			ctx.strokeStyle = '#f00'
+			//填充矩形
+			ctx.strokeRect(0,60,50,50)
+		}
+		
+		//擦除
+		function clear(){
+			ctx.clearRect(0,0,600,600)
+		}
+		
+		createFillRect();
+		createStrokeRect();
+		// clear();
+		
+	</script>
+</html>

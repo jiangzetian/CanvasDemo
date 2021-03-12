@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		//
+		let ballArr = [];
+		
+		//画布尺寸
+		canvas.width = document.documentElement.clientWidth;
+		canvas.height = document.documentElement.clientHeight;
+		
+		function ball(){
+			this.x = parseInt(Math.random()*canvas.width);
+			this.y = parseInt(Math.random()*canvas.height);
+			
+			this.dx = parseInt(Math.random()*10)-5;
+			this.dy = parseInt(Math.random()*10)-5;
+			
+			this.r = 10;
+			this.color = 'blue';
+			
+			ballArr.push(this);
+			this.index = ballArr.length-1;
+		}
+		
+		ball.prototype.render = function(){
+			ctx.beginPath();
+			// 透明度
+			ctx.globalAlpha = 1;
+			ctx.arc(this.x,this.y,10,0,Math.PI*2,false)
+			ctx.fillStyle = this.color;
+			ctx.fill();
+			
+			for(let i=this.index;i<ballArr.length;i++){
+				if(Math.abs(ballArr[i].x-this.x)<150 && Math.abs(ballArr[i].y-this.y)<150){
+					ctx.strokeStyle = '#000';
+					ctx.beginPath();
+					ctx.globalAlpha = 10/Math.sqrt(Math.pow(ballArr[i].x-this.x,2)+Math.pow(ballArr[i].y-this.y,2));
+					ctx.moveTo(this.x,this.y);
+					ctx.lineTo(ballArr[i].x,ballArr[i].y);
+					ctx.closePath();
+					ctx.stroke();
+				}
+			}
+		}
+		
+		ball.prototype.update = function(){
+			this.x += this.dx;
+			this.y += this.dy;
+			if(this.x < this.r || this.x > canvas.width-this.r){
+				this.dx = -this.dx;
+			}
+			if(this.y < this.r || this.y > canvas.height-this.r){
+				this.dy = -this.dy;
+			}
+		}
+		
+		for(let i=0;i<20;i++){
+			new ball();
+		}
+		
+		setInterval(function(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			for(let i=0;i<ballArr.length;i++){
+				ballArr[i].update();
+				ballArr[i].render();
+			}
+		},1000/60)
+		
+	</script>
+</html>

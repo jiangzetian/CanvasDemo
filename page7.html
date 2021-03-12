@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		//圆弧数组
+		let ballArr = [];
+		
+		canvas.width = document.documentElement.clientWidth-10;
+		canvas.height = document.documentElement.clientHeight;
+		
+		//绘制圆弧
+		function ball(x,y,r){
+			this.x = x;
+			this.y = y;
+			this.r = r;
+			//随机颜色
+			this.color = getRandom();
+			//行进方向
+			this.dx = parseInt(Math.random()*10)-5;
+			this.dy = parseInt(Math.random()*10);
+			
+			ballArr.push(this);
+		}
+
+		//小球渲染
+		ball.prototype.render=function(){
+			ctx.beginPath();
+			ctx.arc(this.x,this.y,this.r,0,Math.PI*2,false);
+			ctx.fillStyle = this.color;
+			ctx.fill();
+		}
+		
+		//小球更新
+		ball.prototype.update = function(){
+			this.x += this.dx;
+			this.y += this.dy;
+			this.r -= 0.4;
+			if(this.r<0){
+				this.remove();
+			}
+		}
+		
+		//小球销毁
+		ball.prototype.remove = function(){
+			for(let i=0;i<ballArr.length;i++){
+				if(ballArr[i] == this){
+					ballArr.splice(i,1)
+				}
+			}
+		}
+		
+		canvas.addEventListener("mousemove",function(event){
+			new ball(event.offsetX,event.offsetY,30);
+		})
+		
+		setInterval(function(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			for(let i=0;i<ballArr.length;i++){
+				ballArr[i].update()
+				if(ballArr[i]){
+					ballArr[i].render();
+				}
+			}
+		},1000/60);
+		
+		//随机颜色
+		function getRandom(){
+			let allType = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+			let allTypeArr = allType.split(',');
+			let color = '#';
+			for(let i=0;i<6;i++){
+				let random =parseInt(Math.random()*allTypeArr.length);
+				color += allTypeArr[random];
+			}
+			return color;
+		}
+		
+	</script>
+</html>

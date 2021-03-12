@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="600px" height="600px" style="border: 1px solid #ccc;"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		//绘制路径
+		function createPath(){
+			ctx.strokeStyle = '#000';
+			ctx.fillStyle = '#0f0'
+			ctx.beginPath();
+			ctx.moveTo(50,50);
+			ctx.lineTo(400,180);
+			ctx.lineTo(300,50);
+			ctx.closePath();
+			ctx.stroke();
+			ctx.fill();
+		}
+		
+		createPath()
+	</script>
+</html>

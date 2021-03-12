@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		//
+		let ballArr = [];
+		
+		//画布尺寸
+		canvas.width = document.documentElement.clientWidth;
+		canvas.height = document.documentElement.clientHeight;
+		
+		ctx.beginPath();
+		ctx.moveTo(100,100);
+		ctx.lineTo(200,200);
+		ctx.lineTo(300,100);
+		// 线粗细
+		ctx.lineWidth = 30;
+		// 线形
+		ctx.lineCap = "round"
+		ctx.stroke()
+	</script>
+</html>
