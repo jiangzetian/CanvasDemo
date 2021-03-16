@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		//画布尺寸
+		canvas.width = document.documentElement.clientWidth;
+		canvas.height = document.documentElement.clientHeight;
+		
+		let image = new Image();
+		image.src = './image/wheel.png'
+		image.onload = ()=>{
+			let deg = 0;
+			let x = 200;
+			//定时器
+			setInterval(()=>{
+				ctx.clearRect(0,0,canvas.width,canvas.height )
+				deg += 0.02;
+				x++;
+				ctx.save();
+				ctx.translate(x,200);
+				ctx.rotate(deg);
+				ctx.drawImage(image,-100,-100);
+				ctx.restore();
+			},1000/60)
+		};
+		
+		
+	</script>
+</html>

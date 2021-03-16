@@ -16,20 +16,35 @@
 		</style>
 	</head>
 	<body>
-		<canvas id="mycanvas"></canvas>
+		<canvas id="mycanvas" width="600" height="400"></canvas>
 	</body>
 	
 	<script>
-		//获取canvas
-		let canvas = document.getElementById('mycanvas');
-		//获取上下文
-		let ctx = canvas.getContext('2d');
-		//画布尺寸
-		canvas.width = document.documentElement.clientWidth;
-		canvas.height = document.documentElement.clientHeight;
+		//加载器
+		function draw(){
+			let dom = document.querySelector('#mycanvas');
+			let ctx = dom.getContext('2d');
+			
+			//保存无变形状态
+			ctx.save();
+			//填充色
+			ctx.fillStyle = "#00F";
+			//移动
+			ctx.translate(105,105);
+			//旋转
+			ctx.rotate(0.2)
+			//缩放
+			ctx.scale(1,2);
+			//变形集合
+			// ctx.transform(1,0.5,-0.5,1,30,10);
+			//绘制
+			ctx.fillRect(15,15,120,120);
+			//恢复到无变形状态
+			ctx.restore();
+			//再次渲染一个矩形
+			ctx.fillRect(30,30,200,200);
+		};
 		
-		//变形
-		
-		
+		console.log(new draw())
 	</script>
 </html>

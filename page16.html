@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		//画布尺寸
+		canvas.width = document.documentElement.clientWidth;
+		canvas.height = document.documentElement.clientHeight;
+		
+		ctx.fillStyle = 'red';
+		ctx.fillRect(0,0,100,100)
+		
+		ctx.fillStyle = 'blue';
+		ctx.globalCompositeOperation="source-out";
+		ctx.fillRect(50,50,100,100)
+	</script>
+</html>
+// 

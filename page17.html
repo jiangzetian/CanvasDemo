@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				display: block;
+			}
+			div{
+				box-sizing: border-box;
+				margin: 40px;
+				position: relative;
+				width: 250px;
+				height: 60px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 26px;
+				border: 1px solid #333;
+				user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			中奖了
+			<canvas id="mycanvas" width="250" height="60"></canvas>
+		</div>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		ctx.fillStyle = "#333";
+		ctx.fillRect(0,0,250,60)
+		//设置画上的元素
+		ctx.globalCompositeOperation = "destination-out";
+		canvas.onmousedown = ()=>{
+			canvas.onmousemove = e=>{
+				ctx.beginPath();
+				ctx.arc(e.offsetX,e.offsetY,10,0,7,false);
+				ctx.fillStyle = '#fff';
+				ctx.fill();
+			}
+		}
+	</script>
+</html>
