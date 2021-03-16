@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		//画布尺寸
+		canvas.width = document.documentElement.clientWidth;
+		canvas.height = document.documentElement.clientHeight;
+		
+		// //文本
+		// ctx.font = '60px 宋体';
+		// //文本样式
+		// ctx.textAlign = 'center';
+		// // ctx.fillText('宋体文字',200,200);
+		// ctx.strokeText('宋体文字',200,200);
+		
+		//线性渐变
+		// let linear = ctx.createLinearGradient(0,0,200,200)
+		// linear.addColorStop(0,'red');
+		// linear.addColorStop(0.5,'green');
+		// linear.addColorStop(1,'blue');
+		// ctx.fillStyle = linear;
+		// ctx.fillRect(10,10,200,400);
+		
+		//径向渐变
+		var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+		grd.addColorStop(0,'red');
+		grd.addColorStop(0.5,'green');
+		grd.addColorStop(1,'blue');
+		
+		// Fill with gradient
+		ctx.fillStyle=grd;
+		ctx.fillRect(10,10,150,100);
+		
+	</script>
+</html>

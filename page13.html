@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="600" height="400"></canvas>
+	</body>
+	
+	<script>
+		//加载器
+		function Game(){
+			this.dom = document.querySelector('#mycanvas');
+			this.ctx = this.dom.getContext('2d');
+			this.R = {
+				"bg1":'./image/bg1.jpg',
+				"bg2":'./image/bg2.jpg',
+				"bg3":'./image/bg3.jpg',
+				"bg4":'./image/bg4.jpg',
+				"bg5":'./image/bg5.jpg',
+			};
+			//全部资源数量
+			let AllAmount =  Object.keys(this.R).length;
+			//加载完毕的资源数量
+			let count = 0;
+			
+			for(k in this.R){
+				//图片地址
+				let src = this.R[k]
+				//创建图片
+				this.R[k] = new Image()
+				//赋值图片地址
+				this.R[k].src = src;
+				
+				let self = this;
+				this.R[k].onload = function(){
+					count++;
+					self.ctx.clearRect(0,0,600,400);
+					self.ctx.font = "16px Arial";
+					self.ctx.fillText('加载中:'+count+'/'+AllAmount,10,50);
+					if(count == AllAmount){
+						self.start();
+					}
+				}
+			}
+		};
+		
+		Game.prototype.start = function(){
+			this.ctx.drawImage(this.R['bg1'],200,200,200,100)
+		}
+		
+		console.log(new Game())
+	</script>
+</html>
