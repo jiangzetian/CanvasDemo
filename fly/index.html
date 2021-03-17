@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>fly</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				overflow: hidden;
+				text-align: center;
+			}
+			canvas{
+				background: gray;
+			}
+			.loading{
+				position: absolute;
+				left: 50%;
+				top: 40%;
+				transform: translate(-50%,-50%);
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="320" height="568"></canvas>
+		<img class="loading" src="img/loading.gif" />
+	</body>
+	<script src="js/preload.js"></script>
+	<script src="js/isPhone.js"></script>
+	<script src="js/bgScroll.js"></script>
+	<script>
+		window.onload = ()=>{
+			loading(gameStart);
+		}
+		
+		
+		//获取canvas
+		let canvas = document.getElementById('canvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		let timer = null;
+		//屏幕大小
+		let sw = 320;
+		let sh = 568;
+		
+		//移动端判断
+		if(isMobile()){
+			// sw = document.documentElement.clientWidth;
+			// sh = document.documentElement.clientHeight;
+			sw = window.innerWidth;
+			sh = window.innerHeight;
+		}
+		
+		canvas.width = sw;
+		canvas.height = sh;
+		
+		
+		//开始
+		function gameStart(){
+			document.querySelector('.loading').style.display = "none";
+			timer = setInterval(begin,1000/60)
+		}
+		
+		function begin(){
+			ctx.clearRect(0,0,sw,sh);
+			bgScroll();
+			hero.draw();
+			control();
+		}
+	</script>
+	<script src="js/hero.js"></script>
+	<script src="js/controlHero.js"></script>
+</html>

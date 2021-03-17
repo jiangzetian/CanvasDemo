@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Snake</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#mycanvas{
+				margin: 20px auto;
+				display: block;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('mycanvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		canvas.width = 800;
+		canvas.height = 600;
+		
+		let isEatFood = false;
+		let timer = null;
+		
+		//方块
+		function Rect(x,y,width,height,color){
+			this.x = x;
+			this.y = y;
+			this.width  = width;
+			this.height = height;
+			this.color  = color;
+		}
+		
+		Rect.prototype.rDraw = function(){
+			ctx.beginPath();
+			ctx.fillStyle = this.color;
+			ctx.fillRect(this.x,this.y,this.width,this.height,this.color);
+			ctx.strokeRect(this.x,this.y,this.width,this.height);
+		}
+		//蛇
+		function Snake(){
+			this.head = new Rect(canvas.width/2-20,canvas.height/2-20,40,40,'red');
+			this.body = new Array();
+			
+			let x = this.head.x-40;
+			let y = this.head.y;
+			
+			for(let i=0;i<3;i++){
+				let rect = new Rect(x,y,40,40,'green')
+				this.body.push(rect);
+				x -= 40;
+			}
+			
+			this.direction = 2;
+		}
+		
+		Snake.prototype.sDraw = function(){
+			this.head.rDraw();
+			for(let i=0;i<this.body.length;i++){
+				this.body[i].rDraw();
+			}
+		}
+		
+		Snake.prototype.move = function(){
+			//加头
+			let rect = new Rect(this.head.x,this.head.y,this.head.width,this.head.height,'green');
+			this.body.splice(0,0,rect);
+			//去尾
+			if(isEatFood == false){
+				this.body.pop();
+			}else{
+				isEatFood = false;
+			}
+			
+			switch(this.direction){
+				case 0:{
+					this.head.x -= this.head.width;
+					break;
+				}
+				case 1:{
+					this.head.y -= this.head.height;
+					break;
+				}
+				case 2:{
+					this.head.x += this.head.width;
+					break;
+				}
+				case 3:{
+					this.head.y += this.head.height;
+					break;
+				}
+			}
+			
+			if(this.head.x>=canvas.width || this.head.x<=0 || this.head.y>=canvas.height || this.head.y<=0){
+				clearInterval(timer);
+				timer = null;
+				alert('结束');
+			}
+			
+			// 判断头和身体重叠
+			for(let i=0;i < this.body.length;i++){
+				if(isRectHit(this.head,this.body[i])){
+					clearInterval(timer);
+					timer = null;
+					alert('结束');
+				}
+			}
+			
+		}
+		
+		//键盘监控
+		document.onkeydown = function(event){
+			switch(event.keyCode){
+				case 37:{
+					snake.direction = 0;
+					break;
+				}
+				case 38:{
+					snake.direction = 1;
+					break;
+				}
+				case 39:{
+					snake.direction = 2;
+					break;
+				}
+				case 40:{
+					snake.direction = 3;
+					break;
+				}
+			}
+		}
+		
+		function randForFood(){
+			let rect = '';
+			let isInSnake = true;
+			while(isInSnake){
+				let x = getRandInRange(0,((canvas.width-40)/40)*40);
+				let y = getRandInRange(0,((canvas.height-40)/40)*40);
+				//食物矩形
+				rect = new Rect(x,y,40,40,'blue');
+				
+				//蛇头重叠
+				if(isRectHit(snake.head,rect)){
+					isInSnake = true;
+					continue;
+				}
+				isInSnake = false;
+				
+				// 蛇身重叠
+				for(let i=0;i<snake.body.length;i++){
+					if(isRectHit(snake.body[i],rect)){
+						isInSnake = true;
+						break;
+					}
+				}
+				
+			}
+			return rect;
+		}
+		
+		function isRectHit(rect1,rect2){
+			let minX1 = rect1.x;
+			let minX2 = rect2.x;
+			let minY1 = rect1.y;
+			let minY2 = rect2.y;
+			
+			let maxX1 = rect1.x+rect1.width;
+			let maxX2 = rect2.x+rect2.width;
+			let maxY1 = rect1.y+rect1.height;
+			let maxY2 = rect2.y+rect2.height;
+			
+			let minX = Math.max(minX1,minX2);
+			let minY = Math.max(minY1,minY2);
+			let maxX = Math.min(maxX1,maxX2);
+			let maxY = Math.min(maxY1,maxY2);
+			//判断
+			if(minX<maxX && minY<maxY){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		function getRandInRange(min,max){
+			return Math.round(Math.random()*(max-min)+min);
+		}
+		
+		let snake = new Snake();
+		let food = randForFood();
+		snake.sDraw();
+		function animate(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			food.rDraw();
+			snake.move();
+			snake.sDraw();
+			if(isRectHit(snake.head,food)){
+				console.log('吃到了');
+				isEatFood = true;
+				food = randForFood();
+			}
+		}
+		
+		timer = setInterval(animate,500)
+	</script>
+</html>
