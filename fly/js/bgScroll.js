@@ -9,7 +9,7 @@ let bgImg = new Image();
 bgImg.src = "img/background.png"
 
 function bgScroll(){
-	disRoll += 3;
+	disRoll += 5;
 	if(disRoll > sh){
 		disRoll = 0;
 	}

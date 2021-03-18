@@ -43,8 +43,8 @@
 		let ctx = canvas.getContext('2d');
 		let timer = null;
 		//屏幕大小
-		let sw = 320;
-		let sh = 568;
+		let sw = 420;
+		let sh = 680;
 		
 		//移动端判断
 		if(isMobile()){
@@ -69,8 +69,18 @@
 			bgScroll();
 			hero.draw();
 			control();
+			createBullet();
+			createEnemy();
+			createProp();
+			allMove();
 		}
 	</script>
 	<script src="js/hero.js"></script>
 	<script src="js/controlHero.js"></script>
+	<script src="js/rect.js"></script>
+	<script src="js/bullet.js"></script>
+	<script src="js/prop.js"></script>
+	<script src="js/enemy.js"></script>
+	<script src="js/check.js"></script>
+	<script src="js/rand.js"></script>
 </html>
