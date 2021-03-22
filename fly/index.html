@@ -45,15 +45,12 @@
 		//屏幕大小
 		let sw = 420;
 		let sh = 680;
-		
 		//移动端判断
 		if(isMobile()){
-			// sw = document.documentElement.clientWidth;
-			// sh = document.documentElement.clientHeight;
 			sw = window.innerWidth;
 			sh = window.innerHeight;
 		}
-		
+		//设置canvas高度
 		canvas.width = sw;
 		canvas.height = sh;
 		

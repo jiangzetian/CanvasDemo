@@ -25,7 +25,7 @@ let bulletImg = new Image();
 bulletImg.src = 'img/bullet1.png';
 
 function createBullet(){
-	gap = isCrowed ? 7 : 10;
+	gap = isCrowed ? 7 : 12;
 	gapNum++;
 	if(gapNum % gap === 0){
 		gapNum = 0;

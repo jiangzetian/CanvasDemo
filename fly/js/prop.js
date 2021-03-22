@@ -11,7 +11,7 @@ class Prop extends Rect {
 		super(x,y);
 	    this.w = 39;
 		this.h = 68;
-		this.showIndex = 0;
+		this.showIndex = showIndex;
 		this.speed = rand(3,10);
 		this.img = propImg;
 	}
@@ -23,7 +23,7 @@ let propImg = new Image();
 propImg.src = 'img/prop.png';
 
 function createProp(){
-	let n = rand(0,100);
+	let n = rand(0,800);
 	let p = null;
 	let arr = [rand(0,sw-39),-68];
 	if(n==10){
@@ -31,7 +31,7 @@ function createProp(){
 	}else if(n==20){
 		arr.push(1)
 	}else if(n==30){
-		
+		arr.push(2)
 	}
 	if(arr.length>2){
 		let p = new Prop(...arr);

@@ -23,7 +23,7 @@ class Rect {
 		this.move();
 		if(this.showIndex != -1){
 			//敌机 奖励
-			if(this.hp){
+			if(this.hp >=0 ){
 				this.bol();
 			}
 			ctx.drawImage(this.img,this.w*this.showIndex,0,this.w,this.h,this.x,this.y,this.w,this.h);

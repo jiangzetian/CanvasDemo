@@ -41,7 +41,8 @@ if(isMobile()){
 				window.addEventListener("touchmove",move,{ passive: false })
 			}
 		}else if(ts == 2){
-			console.log(222)
+			//炸弹
+			bomb();
 		}
 	},{ passive: false });
 	//监听手指离开
@@ -70,6 +71,11 @@ if(isMobile()){
 			//下
 			case 40:{
 				isBottom = true;
+				break;
+			}
+			//空格
+			case 32:{
+				bomb();
 				break;
 			}
 		}

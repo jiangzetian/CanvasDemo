@@ -11,7 +11,7 @@ class Enemy extends Rect{
 		this.h = h;
 		this.hp = hp;
 		this.speed = speed;
-		this.showMax =showMax;
+		this.showMax = showMax;
 		this.showIndex = 0;
 		this.score = score;
 		this.img =img;
@@ -19,7 +19,7 @@ class Enemy extends Rect{
 	bol(){
 		if(this.hp <= 0){
 			this.showIndex ++;
-			if(this.showIndex>this.showMax){
+			if(this.showIndex >= this.showMax){
 				this.showIndex = this.showMax;
 				this.isdel = true;
 			}
@@ -36,7 +36,7 @@ e2Img.src = 'img/enemy2.png';
 let e3Img = new Image();
 e3Img.src = 'img/enemy3.png';
 
-let eNum = 200;//游戏难度
+let eNum = 400;//游戏难度
 /**
  * eNum <= 10 创建敌机
  * eNum >9 大敌机
@@ -54,13 +54,13 @@ function createEnemy(){
 		if(n>9){
 			//x,y,w,h,hp,speed,showMax,score,img
 			arr = [
-				rand(0,sw-165),//
-				-250,
-				165,
-				250,
+				rand(0,sw-165),//x
+				-245,//y
+				165,//w
+				245,//h
 				600,
 				rand(3,6),
-				4,
+				5,
 				6,
 				e3Img
 			]
@@ -68,12 +68,12 @@ function createEnemy(){
 		}else if(n>6){
 			arr = [
 				rand(0,sw-70),//x
-				-100,//y
+				-90,//y
 				70,//w
-				200,//h
+				90,//h
 				400,//hp
 				rand(3,8),//speed
-				3,//showMax
+				4,//showMax
 				3,//score
 				e2Img//img
 			]
@@ -81,19 +81,17 @@ function createEnemy(){
 			//x,y,w,h,hp,speed,showMax,score,img
 			arr = [
 				rand(0,sw-50),//x
-				-45,//y
+				-39,//y
 				50,//w
-				45,//h
+				39,//h
 				100,//hp
 				rand(3,10),//speed
-				3,//showMax
+				4,//showMax
 				2,//score
 				e1Img//img
 			]
 		}
 		e = new Enemy(...arr)
 		enemys.push(e);
-		
-		console.log(enemys)
 	}
 }
