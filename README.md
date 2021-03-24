@@ -6,6 +6,9 @@
 ### snake
 贪吃蛇
 
+### B站Banner
+简易B-banner canvas版本
+
 ### page3
 基本写法
 

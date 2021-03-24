@@ -68,16 +68,17 @@
 		
 		
 		function gameStart(){
+			//背景
 			bg2 = new bg(imgs['bg2'],-470,0,4833,180);
 			bg6 = new bg(imgs['bg6'],960,0,1638,160);
-			
+			//左
 			bg7 = new bg(imgs['bg7'],-535,0,1395,180);
 			bg3 = new bg(imgs['bg3'],-376,90,1735,116);
 			t1  = new bg(imgs['t1'],640,20,427,180);
-			
+			//右
 			bg4 = new bg(imgs['bg4'],38,0,2137,180);
 			p3  = new bg(imgs['p3'],1027,33,383,135);
-			
+			//
 			bg5 = new bg(imgs['bg5'],755,20,1076,160);
 			
 			timer = setInterval(begin,1000/60);
@@ -121,34 +122,34 @@
 				bg6.x -= 0.5;
 				
 				//左
-				bg7.x -= 0.5;
-				bg3.x -= 0.5;
-				t1.x  -= 0.5;
+				bg7.x -= 1;
+				bg3.x -= 1;
+				t1.x  -= 1;
 				
 				//右
-				bg5.x -= 2;
+				bg5.x -= 4;
 				
 				//中
-				bg4.x -= 2;
-				p3.x -= 2;
+				bg4.x -= 4;
+				p3.x -= 4;
 			}else{
 				//---向左
 				
 				//背景
-				bg2.x += 0.5;
-				bg6.x += 0.5;
+				bg2.x += 1;
+				bg6.x += 1;
 				
 				//左
-				bg7.x += 0.5;
-				bg3.x += 0.5;
-				t1.x  += 0.5;
+				bg7.x += 1;
+				bg3.x += 1;
+				t1.x  += 1;
 				
 				//右
-				bg5.x += 2;
+				bg5.x += 4;
 				
 				//中
-				bg4.x += 2;
-				p3.x += 2;
+				bg4.x += 4;
+				p3.x += 4;
 			}
 			ex = e.clientX;
 		}
