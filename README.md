@@ -1,5 +1,11 @@
 #  canvas的一些学习Demo 
 
+### fly
+飞机大战
+
+### snake
+贪吃蛇
+
 ### page3
 基本写法
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Banner</title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.banner{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+		}
+		.loading{
+			position: absolute;
+		}
+		#canvas{
+			background: #808080;
+		}
+	</style>
+	<body>
+		<div class="banner">
+			<canvas id="canvas"></canvas>
+			<img class="loading" src="image/loading.gif" />
+		</div>
+	</body>
+	<script src="js/load.js"></script>
+	<script src="js/image.js"></script>
+	<script src="js/bg.js"></script>
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('canvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		
+		// sw = window.innerWidth>1920?1920:window.innerWidth;
+		// sh = sw*180/1920<155?155:sw*180/1920;
+		
+		sw = 1920;
+		sh = 180;
+		canvas.width = sw;
+		canvas.height = sh;
+		
+		//加载图片
+		window.onload = ()=>{
+			LoadStart(gameStart);
+		};
+		
+		//背景
+		let bg2 = null;
+		let bg6 = null;
+		
+		//左
+		let bg7 = null;
+		let bg3 = null;
+		let t1 = null;
+		
+		//中
+		let bg4 = null;
+		let p3 = null;
+		
+		//右
+		let bg5 = null;
+		
+		
+		function gameStart(){
+			bg2 = new bg(imgs['bg2'],-470,0,4833,180);
+			bg6 = new bg(imgs['bg6'],960,0,1638,160);
+			
+			bg7 = new bg(imgs['bg7'],-535,0,1395,180);
+			bg3 = new bg(imgs['bg3'],-376,90,1735,116);
+			t1  = new bg(imgs['t1'],640,20,427,180);
+			
+			bg4 = new bg(imgs['bg4'],38,0,2137,180);
+			p3  = new bg(imgs['p3'],1027,33,383,135);
+			
+			bg5 = new bg(imgs['bg5'],755,20,1076,160);
+			
+			timer = setInterval(begin,1000/60);
+		}
+		
+		function begin(){
+			ctx.clearRect(0,0,sw,sh);
+			drawImg();
+		}
+		
+		function drawImg(){
+			//添加背景
+			ctx.drawImage(imgs['bg1'],-1672,-20,5370,200);
+			bg2.draw();
+			bg6.draw();
+			
+			//左场景
+			bg7.draw();
+			bg3.draw();
+			t1.draw();
+			// ctx.drawImage(imgs['p2'],660,30,200,140);
+			// ctx.drawImage(imgs['p1'],760,80,57,100);
+			
+			// 右场景
+			// ctx.drawImage(imgs['bg8'],1613,90,242,60);
+			// ctx.drawImage(imgs['p4'],1386,85,170,70);
+			bg5.draw();
+			
+			//中场景
+			bg4.draw();
+			p3.draw();
+		}
+		
+		let ex = 0;
+		canvas.onmousemove = e =>{
+			if(e.clientX - ex>0){
+				//---向右
+				
+				//背景
+				bg2.x -= 0.5;
+				bg6.x -= 0.5;
+				
+				//左
+				bg7.x -= 0.5;
+				bg3.x -= 0.5;
+				t1.x  -= 0.5;
+				
+				//右
+				bg5.x -= 2;
+				
+				//中
+				bg4.x -= 2;
+				p3.x -= 2;
+			}else{
+				//---向左
+				
+				//背景
+				bg2.x += 0.5;
+				bg6.x += 0.5;
+				
+				//左
+				bg7.x += 0.5;
+				bg3.x += 0.5;
+				t1.x  += 0.5;
+				
+				//右
+				bg5.x += 2;
+				
+				//中
+				bg4.x += 2;
+				p3.x += 2;
+			}
+			ex = e.clientX;
+		}
+		
+		canvas.onmouseleave = e =>{
+			//背景
+			bg2.x = -470;
+			bg6.x = 960;
+			
+			// 左
+			bg7.x = -535;
+			bg3.x = -376;
+			 t1.x = 640;
+			
+			// 右
+			bg5.x = 755;
+			
+			//中
+			bg4.x = 38;
+			 p3.x = 1027;
+		}
+	</script>
+	
+</html>
