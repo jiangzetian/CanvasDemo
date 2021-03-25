@@ -3,174 +3,149 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Banner</title>
+		<link href="css/index.css" rel="stylesheet" />
 	</head>
-	<style>
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		.banner{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			overflow: hidden;
-		}
-		.loading{
-			position: absolute;
-		}
-		#canvas{
-			background: #808080;
-		}
-	</style>
 	<body>
-		<div class="banner">
-			<canvas id="canvas"></canvas>
-			<img class="loading" src="image/loading.gif" />
+		<div class="bili-banner">
+			<div class="animated-banner">
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/c12c6ceaa5f78de17cd94bb0ad325339b2386ee8.png" 
+						data-height="360" data-width="9666" height="180" width="4833" 
+						style="transform: scale(1) translate(0px, -15px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/4d5ddb371f6d710cf0222a5d0cef46ea3ed5901c.png" 
+						data-height="360" data-width="9666" height="180" width="4833" 
+						style="transform: scale(1) translate(1100px, 0px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/c7a1dbf9bbc09c1f867b14a141c4e2f07c4b228d.png"
+						data-height="360" data-width="3523" height="162" width="1585"
+						style="transform: scale(1) translate(675px, 0px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/d605a7076d5fe89d0d7e3d6219bffe4000033a09.png"
+						data-height="360" data-width="2938" height="176" width="1439"
+						style="transform: scale(1) translate(-637px, 0px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/8d947f22c6a67b8a5d2fbe1424ca2a946802e729.png"
+						data-height="139" data-width="556" height="62" width="250"
+						style="transform: scale(1) translate(607.5px, 45px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				<!-- 开船人物 -->
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/65a860abda015ed247d48b1bcc5cbb9ce725d050.png"
+						data-height="302" data-width="734" height="84" width="205"
+						style="transform: scale(1) translate(252px, 36.4px) rotate(0deg); opacity: 0;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/963685e7d82d27ba5e8187680814a2d548b5adbe.png"
+						data-height="180" data-width="1757" height="125" width="1229"
+						style="transform: scale(1) translate(112px, 14px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/6a6e6e52a18a7731645aa1d93b1d74f2f628f77a.png"
+						data-height="116" data-width="1757" height="81" width="1229"
+						style="transform: scale(1) translate(-350px, 49px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				<!-- 人物 -->
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/3969636231e7668ec91985bb147c89a6b69021c7.png"
+						data-height="346" data-width="497" height="138" width="198"
+						style="transform: scale(1) translate(-240px, 16px) rotate(0deg); opacity: 0;"
+					>
+				</div>
+				<!-- 人物 -->
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/9af4cdc3c81e01522fc4df82a5b7cfa8b03b6b5b.png"
+						data-height="256" data-width="146" height="102" width="58"
+						style="transform: scale(1) translate(-340px, 32px) rotate(0deg); opacity: 0;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/4d8514308bd6673b215cdb1aadbf12891d784672.png"
+						data-height="254" data-width="602" height="114" width="270"
+						style="transform: scale(1) translate(-90px, 13.5px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/9b4f18f9f18c8dca17ba6c0b46a1dcedb649c82b.png"
+						data-height="360" data-width="4277" height="180" width="2138"
+						style="transform: scale(1) translate(100px, 0px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/b24c872ae1ef34ebe794d1631a50b57fbdb0a482.png"
+						data-height="327" data-width="933" height="147" width="419"
+						style="transform: scale(1) translate(216px, 13.5px) rotate(0deg); opacity: 1;"
+					>
+				</div>
+				
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/45031fa60ea6084886e80ca9e906803f9a3221b1.png"
+						data-height="353" data-width="740" height="211" width="444"
+						style="transform: scale(1) translate(2100px, 0px) rotate(0deg); filter: blur(2px); opacity: 1;"
+					>
+				</div>
+				<div class="layer">
+					<img 
+						src="https://i0.hdslb.com/bfs/vc/17a00335345ecb9f5439069ee2d069772a9cede3.png"
+						data-height="360" data-width="1916" height="180" width="958"
+						style="transform: scale(1) translate(-1000px, 0px) rotate(0deg); filter: blur(1px); opacity: 1;"
+					>
+				</div>
+				<canvas width="1519" height="155" style="position: absolute; top: 0px; left: 0px;" id="canvas"></canvas>
+			</div>
 		</div>
 	</body>
-	<script src="js/load.js"></script>
-	<script src="js/image.js"></script>
-	<script src="js/bg.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/canvas.js"></script>
 	<script>
-		//获取canvas
-		let canvas = document.getElementById('canvas');
-		//获取上下文
-		let ctx = canvas.getContext('2d');
 		
-		// sw = window.innerWidth>1920?1920:window.innerWidth;
-		// sh = sw*180/1920<155?155:sw*180/1920;
 		
-		sw = 1920;
-		sh = 180;
-		canvas.width = sw;
-		canvas.height = sh;
-		
-		//加载图片
+	
 		window.onload = ()=>{
-			LoadStart(gameStart);
-		};
-		
-		//背景
-		let bg2 = null;
-		let bg6 = null;
-		
-		//左
-		let bg7 = null;
-		let bg3 = null;
-		let t1 = null;
-		
-		//中
-		let bg4 = null;
-		let p3 = null;
-		
-		//右
-		let bg5 = null;
-		
-		
-		function gameStart(){
-			//背景
-			bg2 = new bg(imgs['bg2'],-470,0,4833,180);
-			bg6 = new bg(imgs['bg6'],960,0,1638,160);
-			//左
-			bg7 = new bg(imgs['bg7'],-535,0,1395,180);
-			bg3 = new bg(imgs['bg3'],-376,90,1735,116);
-			t1  = new bg(imgs['t1'],640,20,427,180);
-			//右
-			bg4 = new bg(imgs['bg4'],38,0,2137,180);
-			p3  = new bg(imgs['p3'],1027,33,383,135);
-			//
-			bg5 = new bg(imgs['bg5'],755,20,1076,160);
-			
-			timer = setInterval(begin,1000/60);
+			loading();
+		}
+		function start(){
+			timer = setInterval(begin,1000/60)
 		}
 		
 		function begin(){
 			ctx.clearRect(0,0,sw,sh);
-			drawImg();
-		}
-		
-		function drawImg(){
-			//添加背景
-			ctx.drawImage(imgs['bg1'],-1672,-20,5370,200);
-			bg2.draw();
-			bg6.draw();
-			
-			//左场景
-			bg7.draw();
-			bg3.draw();
-			t1.draw();
-			// ctx.drawImage(imgs['p2'],660,30,200,140);
-			// ctx.drawImage(imgs['p1'],760,80,57,100);
-			
-			// 右场景
-			// ctx.drawImage(imgs['bg8'],1613,90,242,60);
-			// ctx.drawImage(imgs['p4'],1386,85,170,70);
-			bg5.draw();
-			
-			//中场景
-			bg4.draw();
-			p3.draw();
-		}
-		
-		let ex = 0;
-		canvas.onmousemove = e =>{
-			if(e.clientX - ex>0){
-				//---向右
-				
-				//背景
-				bg2.x -= 0.5;
-				bg6.x -= 0.5;
-				
-				//左
-				bg7.x -= 1;
-				bg3.x -= 1;
-				t1.x  -= 1;
-				
-				//右
-				bg5.x -= 4;
-				
-				//中
-				bg4.x -= 4;
-				p3.x -= 4;
-			}else{
-				//---向左
-				
-				//背景
-				bg2.x += 1;
-				bg6.x += 1;
-				
-				//左
-				bg7.x += 1;
-				bg3.x += 1;
-				t1.x  += 1;
-				
-				//右
-				bg5.x += 4;
-				
-				//中
-				bg4.x += 4;
-				p3.x += 4;
-			}
-			ex = e.clientX;
-		}
-		
-		canvas.onmouseleave = e =>{
-			//背景
-			bg2.x = -470;
-			bg6.x = 960;
-			
-			// 左
-			bg7.x = -535;
-			bg3.x = -376;
-			 t1.x = 640;
-			
-			// 右
-			bg5.x = 755;
-			
-			//中
-			bg4.x = 38;
-			 p3.x = 1027;
+			createFlower();
+			allDraw();
 		}
 	</script>
-	
 </html>
