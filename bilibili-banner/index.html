@@ -132,16 +132,12 @@
 	<script src="js/index.js"></script>
 	<script src="js/canvas.js"></script>
 	<script>
-		
-		
-	
 		window.onload = ()=>{
 			loading();
 		}
 		function start(){
 			timer = setInterval(begin,1000/60)
 		}
-		
 		function begin(){
 			ctx.clearRect(0,0,sw,sh);
 			createFlower();
