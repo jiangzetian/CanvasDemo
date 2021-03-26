@@ -80,12 +80,30 @@ let img14StartX = GetTranslate(img14,'x');
 
 //图片移动
 function imgMove(moveX){
+	//背景
 	img0.style.transform = "scale(1) translate("+(img0StartX+moveX*0.1)+"px, -15px) rotate(0deg)";
+	//左山
 	img1.style.transform = "scale(1) translate("+(img1StartX+moveX*0.1)+"px, 0px) rotate(0deg)";
-	img2.style.transform = "scale(1) translate("+(img2StartX+moveX*0.1)+"px, 0px) rotate(0deg)";
+	//右山
+	img2.style.transform = "scale(1) translate("+(img2StartX+moveX*0.03)+"px, 0px) rotate(0deg)";
+	//左桥
 	img3.style.transform = "scale(1) translate("+(img3StartX+moveX*0.11)+"px, 0px) rotate(0deg)";
+	//右船
 	img4.style.transform = "scale(1) translate("+(img4StartX+moveX*0.1)+"px, 45px) rotate(0deg)";
-	
+	//中草坪+树
+	img6.style.transform = "scale(1) translate("+(img6StartX+moveX*0.5)+"px, 25px) rotate(0deg)";
+	//中草坪+风筝
+	img7.style.transform = "scale(1) translate("+(img7StartX+moveX*0.5)+"px, 49px) rotate(0deg)";
+	//中树
+	img10.style.transform = "scale(1) translate("+(img10StartX+moveX*1)+"px, 13.5px) rotate(0deg)";
+	//中草坪+树
+	img11.style.transform = "scale(1) translate("+(img11StartX+moveX*1)+"px, 0px) rotate(0deg)";
+	//中人物
+	img12.style.transform = "scale(1) translate("+(img12StartX+moveX*1)+"px, 13.5px) rotate(0deg)";
+	//右树
+	img13.style.transform = "scale(1) translate("+(img13StartX+moveX*1.5)+"px, 0px) rotate(0deg)";
+	//左树
+	img14.style.transform = "scale(1) translate("+(img14StartX+moveX*1.5)+"px, 0px) rotate(0deg)";
 	//人物的显示
 	if(moveX < 200){
 		img5.style.transform = "scale(1) translate("+(img5StartX-moveX*0.25)+"px, 36.4px) rotate(0deg)";
@@ -99,16 +117,6 @@ function imgMove(moveX){
 		img8.style.opacity = 1;
 		img9.style.opacity = 1;
 	}
-	
-	img6.style.transform = "scale(1) translate("+(img6StartX+moveX*0.5)+"px, 14px) rotate(0deg)";
-	img7.style.transform = "scale(1) translate("+(img7StartX+moveX*0.2)+"px, 49px) rotate(0deg)";
-	
-	
-	img10.style.transform = "scale(1) translate("+(img10StartX+moveX*1.05)+"px, 13.5px) rotate(0deg)";
-	img11.style.transform = "scale(1) translate("+(img11StartX+moveX*1.05)+"px, 0px) rotate(0deg)";
-	img12.style.transform = "scale(1) translate("+(img12StartX+moveX*1.05)+"px, 13.5px) rotate(0deg)";
-	img13.style.transform = "scale(1) translate("+(img13StartX+moveX*1.5)+"px, 0px) rotate(0deg)";
-	img14.style.transform = "scale(1) translate("+(img14StartX+moveX*1.5)+"px, 0px) rotate(0deg)";
 }
 
 //图片复位
@@ -119,7 +127,7 @@ function imgRest(){
 	img3.style.transform = "scale(1) translate("+(img3StartX)+"px, 0px) rotate(0deg)";
 	img4.style.transform = "scale(1) translate("+(img4StartX)+"px, 45px) rotate(0deg)";
 	img5.style.transform = "scale(1) translate("+(img5StartX)+"px, 36.4px) rotate(0deg)";
-	img6.style.transform = "scale(1) translate("+(img6StartX)+"px, 14px) rotate(0deg)";
+	img6.style.transform = "scale(1) translate("+(img6StartX)+"px, 25px) rotate(0deg)";
 	img7.style.transform = "scale(1) translate("+(img7StartX)+"px, 49px) rotate(0deg)";
 	img8.style.transform = "scale(1) translate("+(img8StartX)+"px, 16px) rotate(0deg)";
 	img9.style.transform = "scale(1) translate("+(img9StartX)+"px, 32px) rotate(0deg)";

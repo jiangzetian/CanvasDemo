@@ -44,14 +44,14 @@ class Flower {
 		ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
 	}
 	//飘落
-	updata(speedX = 0.5, speedY = 0.5) {
+	updata() {
 		if (this.x > sw || this.y > sh) {
 			this.del = true;
 		}else{
 			this.del = false;
 		}
-		this.x += speedX;
-		this.y += speedY;
+		this.x += Math.random() * 3 + 1;
+		this.y += Math.random() * 3 + 1;
 	}
 }
 
@@ -71,17 +71,15 @@ function createFlower() {
 }
 //渲染
 function allDraw(){
-	if(fs.length>0){
-		for (i = 0; i < fs.length; i++) {
-			let flower = fs[i];
-			if(flower.del){		
-				fs.splice(i,1);
-				i--;
-				continue;
-			}
-			flower.draw();
-			flower.updata(Math.random() * 3 + 1,Math.random() * 3 + 1);
+	for (i = 0; i < fs.length; i++) {
+		let flower = fs[i];
+		if(flower.del){		
+			fs.splice(i,1);
+			i--;
+			continue;
 		}
+		flower.draw();
+		flower.updata();
 	}
 }
 

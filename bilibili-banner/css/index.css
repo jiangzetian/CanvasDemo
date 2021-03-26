@@ -6,17 +6,13 @@
 	margin: 0 auto;
     position: relative;
     z-index: 0;
+	width: 100%;
+	height: 9.375vw;
     min-height: 155px;
-    height: 9.375vw;
     min-width: 999px;
     background-color: #f9f9f9;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    background-repeat: no-repeat;
-    background-position: center 0;
-    background-size: cover;
 }
 .animated-banner{
 	position: absolute;
@@ -24,6 +20,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
+	margin: auto;
 	overflow: hidden;
 }
 
@@ -39,5 +36,5 @@
 }
 
 .layer img{
-	/* transition: transform 0.1s; */
+	transition: transform 0.2s;
 }
