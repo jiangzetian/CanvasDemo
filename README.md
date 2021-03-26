@@ -7,7 +7,7 @@
 贪吃蛇
 
 ### B站Banner
-简易B-banner canvas版本
+简易bilibili-banner
 
 ### page3
 基本写法
