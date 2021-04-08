@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Boat</title>
+		<style>
+			*{
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas width="600" height="400" id="canvas" style="background: #eee;"></canvas>
+	</body>
+	<script src="./js/preload.js"></script>
+	<script src="./js/rand.js"></script>
+	<script>
+		//获取canvas
+		let canvas = document.getElementById('canvas');
+		//获取上下文
+		let ctx = canvas.getContext('2d');
+		let sw = canvas.width;
+		let sh = canvas.height;
+		//定时器
+		let timer = null;
+		
+	
+		window.onload = ()=>{
+			loading();
+		}
+	
+		function start(){
+			timer = setInterval(begin,1000/60);
+		}
+	
+		function begin(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			bgWater()
+			createBoat();
+		}
+		
+	</script>
+	<script src="./js/bgWater.js"></script>
+	<script src="./js/boat.js"></script>
+</html>
