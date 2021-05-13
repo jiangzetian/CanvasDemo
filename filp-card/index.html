@@ -20,6 +20,7 @@
 			initCamera();//创建相机
 			initLight();//创建光源
 			initObject();//创建物体
+			initSprite();//创建图片
 			initScene();//创建场景
 			render();//渲染
 		}
@@ -58,46 +59,39 @@
 			pointLight = new THREE.PointLight(0xffffff,1,2000);
 			pointLight.position.set(0,0,900);
 			//环境光
-			ambientLight = new THREE.AmbientLight(0x333333);
+			ambientLight = new THREE.AmbientLight(0xffffff);
 		}
 		
 		//物体
 		var cube;
 		function initObject(){
-			var geometry = new THREE.BoxGeometry(300,500,1);
-			var material = new THREE.MeshLambertMaterial({color:0xff0000});
+			var geometry = new THREE.BoxGeometry(300,500,10);
+			var spriteMap = new THREE.TextureLoader().load( "img/pic1.png" );
+			var material = new THREE.MeshLambertMaterial({map:spriteMap,color:0xffffff});
 			cube = new THREE.Mesh(geometry,material);
 			cube.position.set(0,0,0);
 		}
+		
+		//图片
+		var sprite ;
+		function initSprite(){
+			var spriteMap = new THREE.TextureLoader().load( "img/pic2.jpg" );
+			var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+			sprite = new THREE.Sprite( spriteMaterial );
+			sprite.position.set(0,-10,100);
+			sprite.scale.set(300,300,1);
+		} 
 		
 		
 		//创建场景
 		var scene;
 		function initScene(){
 			scene = new THREE.Scene();
-			scene.add(pointLight);
+			// scene.add(pointLight);
 			scene.add(ambientLight);
 			scene.add(cube);
+			// scene.add(sprite);
 		}
-		
-		
-		//事件
-		var hover = false;
-		function control(e){
-			let mx = e.clientX;
-			let my = e.clientY;
-			if(Math.abs(width/2-mx)<=150 && Math.abs(height/2-my)<=250){
-				// cube.rotateX(Math.PI/12);
-				cube.rotate.set(Math.PI/12)
-			}else{
-			}
-		};
-		document.addEventListener('mousemove',control);
-		// document.addEventListener('mouseleave',e =>{
-		// 	document.removeEventListener(control);
-		// });
-		
-		
 		
 		//渲染
 		function render(){
@@ -105,5 +99,17 @@
 			renderer.render(scene,camera);
 			requestAnimationFrame(render);
 		}
+		
+		//事件
+		document.addEventListener('mousemove',e=>{
+			let mx = e.clientX;
+			let my = e.clientY;
+			if(Math.abs(width/2-mx)<=150 && Math.abs(height/2-my)<=250){
+				cube.rotation.set(Math.PI/16*(my-height/2)/250,Math.PI/16*(mx-width/2)/150,0);
+				// sprite.rotation.set(Math.PI/6*(my-height/2)/250,Math.PI/6*(mx-width/2)/150,0);
+			}else{
+				cube.rotation.set(0,0,0)
+			}
+		});
 	</script>
 </html>
