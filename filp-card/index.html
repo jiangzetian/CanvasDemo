@@ -66,8 +66,7 @@
 		var cube;
 		function initObject(){
 			var geometry = new THREE.BoxGeometry(300,500,10);
-			var spriteMap = new THREE.TextureLoader().load( "img/pic1.png" );
-			var material = new THREE.MeshLambertMaterial({map:spriteMap,color:0xffffff});
+			var material = new THREE.MeshLambertMaterial({color:0xffffff});
 			cube = new THREE.Mesh(geometry,material);
 			cube.position.set(0,0,0);
 		}
@@ -75,11 +74,11 @@
 		//图片
 		var sprite ;
 		function initSprite(){
-			var spriteMap = new THREE.TextureLoader().load( "img/pic2.jpg" );
-			var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
-			sprite = new THREE.Sprite( spriteMaterial );
-			sprite.position.set(0,-10,100);
-			sprite.scale.set(300,300,1);
+			var spriteMap = new THREE.TextureLoader().load( "img/pic5.png" );
+			var geometry = new THREE.BoxGeometry(260,440,0);
+			var material = new THREE.MeshLambertMaterial({ map: spriteMap,transparent:true,});
+			sprite = new THREE.Mesh(geometry,material);
+			sprite.position.set(0,0,100);
 		} 
 		
 		
@@ -90,7 +89,7 @@
 			// scene.add(pointLight);
 			scene.add(ambientLight);
 			scene.add(cube);
-			// scene.add(sprite);
+			scene.add(sprite);
 		}
 		
 		//渲染
@@ -105,10 +104,13 @@
 			let mx = e.clientX;
 			let my = e.clientY;
 			if(Math.abs(width/2-mx)<=150 && Math.abs(height/2-my)<=250){
-				cube.rotation.set(Math.PI/16*(my-height/2)/250,Math.PI/16*(mx-width/2)/150,0);
-				// sprite.rotation.set(Math.PI/6*(my-height/2)/250,Math.PI/6*(mx-width/2)/150,0);
+				cube.rotation.set(Math.PI/10*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
+				sprite.rotation.set(Math.PI/10*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
+				sprite.position.set(20*(mx-width/2)/150,-20*(my-height/2)/250,100);
 			}else{
-				cube.rotation.set(0,0,0)
+				cube.rotation.set(0,0,0);
+				sprite.rotation.set(0,0,0)
+				sprite.position.set(0,0,100);
 			}
 		});
 	</script>
