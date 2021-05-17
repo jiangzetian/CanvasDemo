@@ -101,18 +101,37 @@
 		}
 		
 		//事件
-		document.addEventListener('mousemove',e=>{
+		// document.addEventListener('mousemove',e=>{
+		// 	let mx = e.clientX;
+		// 	let my = e.clientY;
+		// 	if(Math.abs(width/2-mx)<=200 && Math.abs(height/2-my)<=320){
+		// 		cube.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
+		// 		sprite.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
+		// 		sprite.position.set(20*(mx-width/2)/150,-20*(my-height/2)/250,100);
+		// 	}else{
+		// 		cube.rotation.set(0,0,0);
+		// 		sprite.rotation.set(0,0,0)
+		// 		sprite.position.set(0,0,100);
+		// 	}
+		// });
+		var mouse = new THREE.Vector2();
+		var raycaster = new THREE.Raycaster();
+		document.onmousemove = function(e) {
 			let mx = e.clientX;
 			let my = e.clientY;
-			if(Math.abs(width/2-mx)<=200 && Math.abs(height/2-my)<=320){
+		    mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+		    mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+		    raycaster.setFromCamera( mouse, camera );
+		    var intersects = raycaster.intersectObjects( scene.children );
+		    if ( intersects.length > 0 ) {
 				cube.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
 				sprite.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
 				sprite.position.set(20*(mx-width/2)/150,-20*(my-height/2)/250,100);
-			}else{
+		    } else {
 				cube.rotation.set(0,0,0);
 				sprite.rotation.set(0,0,0)
 				sprite.position.set(0,0,100);
-			}
-		});
+		    }
+		};
 	</script>
 </html>
