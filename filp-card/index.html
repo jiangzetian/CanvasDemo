@@ -5,6 +5,7 @@
 		<title>翻转卡片</title>
 		<link href="css/index.css" rel="stylesheet"/>
 		<script src="js/threejs/three.js"></script>
+		<script src="js/threejs/tweenjs.js"></script>
 	</head>
 	<body>
 		<div id="retina"></div>
@@ -13,6 +14,10 @@
 		//页面加载完成
 		window.onload = function(){
 			create();
+			var position = { x: 0, y: 0 };
+			var tweenA = new TWEEN.Tween(position).to({x:1000},5000).onUpdate(()=>{
+				console.log(position.x)
+			});
 		}
 		
 		function create(){
@@ -96,6 +101,7 @@
 		//渲染
 		function render(){
 			renderer.clear();
+			// TWEEN.update();
 			renderer.render(scene,camera);
 			requestAnimationFrame(render);
 		}
