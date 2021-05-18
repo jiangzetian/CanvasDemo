@@ -14,18 +14,18 @@
 		//页面加载完成
 		window.onload = function(){
 			create();
-			var position = { x: 0, y: 0 };
-			var tweenA = new TWEEN.Tween(position).to({x:1000},5000).onUpdate(()=>{
-				console.log(position.x)
-			});
 		}
 		
 		function create(){
 			initRender();//创建渲染器
 			initCamera();//创建相机
 			initLight();//创建光源
-			initObject();//创建物体
-			initSprite();//创建图片
+			initObject();//创建物体1
+			initObject_2();//物体2 立方体
+			initObject_3()//物体3 圆环
+			initObject_4()//物体4 椎体
+			initObject_5()//物体4 圆柱体
+			initSprite();//创建图片1
 			initScene();//创建场景
 			render();//渲染
 		}
@@ -61,30 +61,67 @@
 		var ambientLight;
 		function initLight(){
 			//点光源
-			pointLight = new THREE.PointLight(0xffffff,1,2000);
-			pointLight.position.set(0,0,900);
+			pointLight = new THREE.PointLight(0xffffff);
+			pointLight.position.set(-800,0,800);
 			//环境光
 			ambientLight = new THREE.AmbientLight(0xffffff);
-			pointLight.position.set(0,0,900);
+			// ambientLight.position.set(0,0,500);
 		}
 		
-		//物体
-		var cube;
+		//物体1
+		var cube_1;
 		function initObject(){
 			var geometry = new THREE.BoxGeometry(300,500,10);
-			var material = new THREE.MeshLambertMaterial({color:0xffffff});
-			cube = new THREE.Mesh(geometry,material);
-			cube.position.set(0,0,0);
+			var material = new THREE.MeshMatcapMaterial({color:0xffffff});
+			cube_1 = new THREE.Mesh(geometry,material);
+			cube_1.position.set(0,0,0);
+			cube_1.name = 'cube_1';
 		}
 		
-		//图片
-		var sprite ;
+		//物体2 方块
+		var cube_2;
+		function initObject_2(){
+			var geometry = new THREE.BoxGeometry(30,30,30);
+			var material = new THREE.MeshPhongMaterial({color:0x3546FF});
+			cube_2 = new THREE.Mesh(geometry,material);
+			cube_2.position.set(-200,-80,400);
+		}
+		
+		//物体3 圆环
+		var cube_3;
+		function initObject_3(){
+			var geometry = new THREE.TorusBufferGeometry( 20, 8, 16, 100 );
+			var material = new THREE.MeshPhongMaterial( { color: 0x3546FF } );
+			cube_3 = new THREE.Mesh( geometry, material );
+			cube_3.position.set(200,80,400);
+		}
+		
+		//物体4 椎体
+		var cube_4;
+		function initObject_4(){
+			var geometry = new THREE.ConeGeometry( 15, 40, 32 );
+			var material = new THREE.MeshPhongMaterial( {color: 0x3546FF} );
+			cube_4 = new THREE.Mesh( geometry, material );
+			cube_4.position.set(0,0,500);
+		}
+		
+		//物体5 圆柱体
+		var cube_5;
+		function initObject_5(){
+			var geometry = new THREE.CylinderGeometry( 10, 10, 30, 32 );
+			var material = new THREE.MeshPhongMaterial( {color: 0x3546FF} );
+			cube_5 = new THREE.Mesh( geometry, material );
+			cube_5.position.set(300,120,400);
+		}
+		
+		//图片1
+		var image_1 ;
 		function initSprite(){
 			var spriteMap = new THREE.TextureLoader().load( "img/pic5.png" );
 			var geometry = new THREE.BoxGeometry(260,440,0);
 			var material = new THREE.MeshLambertMaterial({ map: spriteMap,transparent:true,});
-			sprite = new THREE.Mesh(geometry,material);
-			sprite.position.set(0,0,100);
+			image_1 = new THREE.Mesh(geometry,material);
+			image_1.position.set(0,0,100);
 		} 
 		
 		
@@ -92,51 +129,76 @@
 		var scene;
 		function initScene(){
 			scene = new THREE.Scene();
-			// scene.add(pointLight);
+			scene.add(pointLight);
 			scene.add(ambientLight);
-			scene.add(cube);
-			scene.add(sprite);
+			scene.add(cube_1);
+			scene.add(cube_2);
+			scene.add(cube_3);
+			scene.add(cube_4);
+			scene.add(cube_5);
+			scene.add(image_1);
 		}
 		
 		//渲染
 		function render(){
 			renderer.clear();
-			// TWEEN.update();
+			cube_2.rotation.x += 0.01;
+			cube_2.rotation.y += 0.01;
+			cube_2.rotation.z += 0.01;
+			
+			cube_3.rotation.x += 0.01;
+			cube_3.rotation.y += 0.01;
+			cube_3.rotation.z += 0.01;
+			
+			cube_4.rotation.x += 0.01;
+			cube_4.rotation.y += 0.01;
+			cube_4.rotation.z += 0.01;
+			
+			cube_5.rotation.x += 0.01;
+			cube_5.rotation.y += 0.01;
+			cube_5.rotation.z += 0.01;
+			
 			renderer.render(scene,camera);
 			requestAnimationFrame(render);
 		}
 		
 		//事件
-		// document.addEventListener('mousemove',e=>{
-		// 	let mx = e.clientX;
-		// 	let my = e.clientY;
-		// 	if(Math.abs(width/2-mx)<=200 && Math.abs(height/2-my)<=320){
-		// 		cube.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
-		// 		sprite.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
-		// 		sprite.position.set(20*(mx-width/2)/150,-20*(my-height/2)/250,100);
-		// 	}else{
-		// 		cube.rotation.set(0,0,0);
-		// 		sprite.rotation.set(0,0,0)
-		// 		sprite.position.set(0,0,100);
-		// 	}
-		// });
 		var mouse = new THREE.Vector2();
 		var raycaster = new THREE.Raycaster();
+		//移动角度数据
+		var rotationData = {x:0,y:0};
+		//移动距离数据（图片）
+		var positionData = {x:0,y:0}
+		//鼠标移动监听
 		document.onmousemove = function(e) {
-			let mx = e.clientX;
-			let my = e.clientY;
+			var mx = e.clientX;
+			var my = e.clientY;
 		    mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
 		    mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
 		    raycaster.setFromCamera( mouse, camera );
 		    var intersects = raycaster.intersectObjects( scene.children );
 		    if ( intersects.length > 0 ) {
-				cube.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
-				sprite.rotation.set(Math.PI/14*(my-height/2)/250,Math.PI/14*(mx-width/2)/150,0);
-				sprite.position.set(20*(mx-width/2)/150,-20*(my-height/2)/250,100);
+				for(let i=0;i<intersects.length;i++){
+					if(intersects[i].object.name == 'cube_1'){
+						createjs.Tween.get(rotationData).to({x:Math.PI/14*(my-height/2)/250,y:Math.PI/14*(mx-width/2)/150}, 200).addEventListener('change',e=>{
+							cube_1.rotation.set(rotationData.x,rotationData.y,0);
+							image_1.rotation.set(rotationData.x,rotationData.y,0);
+						},false);
+						
+						createjs.Tween.get(positionData).to({x:20*(mx-width/2)/150,y:-20*(my-height/2)/250}, 200).addEventListener('change',e=>{
+							image_1.position.set(positionData.x,positionData.y,100);
+						},false);
+					}
+				}
 		    } else {
-				cube.rotation.set(0,0,0);
-				sprite.rotation.set(0,0,0)
-				sprite.position.set(0,0,100);
+				createjs.Tween.get(rotationData).to({x:0,y:0}, 100).addEventListener('change',e=>{
+					cube_1.rotation.set(rotationData.x,rotationData.y,0);
+					image_1.rotation.set(rotationData.x,rotationData.y,0);
+				},false);
+				
+				createjs.Tween.get(positionData).to({x:0,y:0}, 100).addEventListener('change',e=>{
+					image_1.position.set(positionData.x,positionData.y,100);
+				},false);
 		    }
 		};
 	</script>
