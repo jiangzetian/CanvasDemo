@@ -29,7 +29,7 @@
 			initScene(); //创建场景
 			// initControls()//视角控制器
 			initMouse() //鼠标监听
-			initCubeAnime();//物体移动控制
+			initBgCubesAnime();//物体移动控制
 			render(); //渲染
 		}
 
@@ -193,7 +193,7 @@
 		
 		//装饰物体移动
 		var cubeV = {v:-0.1}
-		function initCubeAnime(){
+		function initBgCubesAnime(){
 			setInterval(()=>{
 				if(cubeV.v>0){
 					createjs.Tween.get(cubeV).to({v:-0.1}, 1000).addEventListener('change', e => {
