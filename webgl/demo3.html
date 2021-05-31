@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>demo1</title>
+		<script type="text/javascript" src="js/threejs/three.js"></script>
+		<script src="js/threejs/OrbitControls.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="retina"></div>
+	</body>
+	<script>
+		//页面加载完成
+		window.onload = function(){
+			create();
+		}
+		
+		function create(){
+			initRender();//创建渲染器
+			initCamera();//创建相机
+			initLight();//创建光源
+			initObject();//创建物体
+			initControls();//交互插件
+			initScene();//创建场景
+			render();//渲染
+		}
+		
+		//渲染器
+		var renderer;
+		var width;
+		var height;
+		function initRender(){
+			width = window.innerWidth;
+			height = window.innerHeight;
+			renderer = new THREE.WebGLRenderer({
+				antialias:true,//抗锯齿开启
+			})
+			renderer.setSize(width,height);//设置渲染器宽高
+			renderer.setClearColor('#000000',1.0);//设置背景颜色
+			renderer.setPixelRatio(window.devicePixelRatio);//设置设备像素比
+			document.getElementById('retina').appendChild(renderer.domElement);//把渲染器放入页面中
+		}
+		
+		//相机
+		var camera;
+		var origPoint = new THREE.Vector3(0,0,0)
+		function initCamera(){
+			camera = new THREE.PerspectiveCamera(45,width/height,1,10000);
+			camera.position.set(0,800,800);//相机位置
+			camera.up.set(0,1,0)//设置相机正方向
+			camera.lookAt(origPoint);//设置相机视点
+		}
+		
+		//光源
+		var pointLight;
+		var ambientLight;
+		function initLight(){
+			//点光源
+			pointLight = new THREE.DirectionalLight(0xffffff,1);
+			pointLight.position.set(10000,10000,10000);
+			//环境光
+			ambientLight = new THREE.AmbientLight(0xffffff);
+		}
+		
+		//物体
+		var cube;
+		function initObject(font){
+			var geometry = new THREE.BoxGeometry(1000,0,1000);
+			var material = new THREE.MeshPhysicalMaterial({color:0xFF9043});
+			cube = new THREE.Mesh(geometry,material);
+			cube.position.set(0,0,0)
+		}
+		
+		var controls;
+		function initControls() {
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
+		}
+		
+		//创建场景
+		var scene;
+		var gridHelper = new THREE.GridHelper( 5000, 100, 0x2C2C2C, 0x888888 );
+		var axes = new THREE.AxisHelper(1000);
+		function initScene(){
+			scene = new THREE.Scene();
+			scene.add(controls);
+			scene.add(gridHelper);
+			scene.add(axes);
+			scene.add(pointLight);
+			scene.add(ambientLight);
+			scene.add(cube);
+		}
+		
+		//渲染
+		function render(){
+			renderer.clear();
+			renderer.render(scene,camera);
+			requestAnimationFrame(render)
+		}
+	</script>
+</html>
