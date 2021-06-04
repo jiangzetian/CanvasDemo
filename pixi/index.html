@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PIXI</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+		<script src="js/pixi.js"></script>
+	</head>
+	<body></body>
+	<script type="text/javascript">
+		//创建Pixi应用程序
+		let app = new PIXI.Application({
+			width: 256, // default: 800 宽度
+			height: 256, // default: 600 高度
+			antialias: true, // default: false 反锯齿
+			transparent: false, // default: false 透明度
+			resolution: 1 // default: 1 分辨率
+		});
+		//将Pixi自动为您创建的画布添加到HTML文档中
+		document.body.appendChild(app.view);
+		//背景
+		app.renderer.view.style.position = "absolute";
+		app.renderer.view.style.display = "block";
+		app.renderer.autoResize = true;
+		app.renderer.resize(window.innerWidth, window.innerHeight);
+
+		//精灵
+		// let texture = PIXI.utils.TextureCache['images/aircraft.png'];
+		// let sprite = new PIXI.Sprite(texture);
+
+		PIXI.loader
+			.add("images/aircraft.png")
+			.load(setup);
+
+		function setup() {
+			let aircraft  = new PIXI.Sprite(
+				 PIXI.loader.resources["images/aircraft.png"].texture
+			);
+			app.stage.addChild(aircraft);
+		}
+	</script>
+</html>
